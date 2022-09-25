@@ -23,7 +23,7 @@ require 'auth.php';
 <form id="form" method="post" action="auth.php" name="signin-form" >
     <div class="form-element">
         <label>
-            <p>Login</p>
+            <p>login</p>
         <input type="text" name="login" pattern="[a-zA-Z0-9]+" required />
         </label>
     </div>
@@ -34,8 +34,9 @@ require 'auth.php';
         <input type="password" name="password" required />
         </label>
     </div>
-    <button type="submit" name="Login" value="Login" >Log In</button>
-    <button onclick="location.href = 'Register.php'" >Register</button>
+    <button class="login-but" type="submit" name="login" value="login" >Log In</button>
+    <button  onclick="location.href = 'Register.php'" >Register</button>
+    <p class="msg"></p>
     <?php
     if (isset($_SESSION['errorLog'])) {
         echo '<p class="msg">'. $_SESSION['errorLog'] .'</p>';
@@ -47,6 +48,7 @@ require 'auth.php';
 <?php  else: ?>
     <p>Привет <?= $_COOKIE['user'] ?>.<a href="exit.php">Выход</a></p>
 <?php endif; ?>
-
+<script src="js/jquery-3.6.1.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

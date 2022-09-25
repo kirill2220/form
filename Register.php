@@ -20,13 +20,13 @@ require 'function.php';
     <div>
         <div class="form-element">
             <label>
-                <p>Login</p>
-                <input type="text" name="Login" title="Должно быть не менее 6"   required/>
+                <p>login</p>
+                <input type="text" name="login" title="Должно быть не менее 6"   required/>
 <?php
-    if (isset($_SESSION['errorLogin'])) {
-        echo '<p class="msg">'. $_SESSION['errorLogin'] .'</p>';
+    if (isset($_SESSION['errorlogin'])) {
+        echo '<p class="msg">'. $_SESSION['errorlogin'] .'</p>';
     }
-unset($_SESSION['errorLogin']);
+unset($_SESSION['errorlogin']);
     ?>
             </label>
         </div>

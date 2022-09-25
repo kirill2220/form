@@ -12,8 +12,8 @@ if(isset($_POST['register'])) {
         $json = json_decode($data, $assoc = TRUE);
     }
     foreach ($json as $pas){
-        if($pas['Login']==$_POST['Login']){
-     $_SESSION['errorLogin']='Такой логин уже существует!';
+        if($pas['login']==$_POST['login']){
+     $_SESSION['errorlogin']='Такой логин уже существует!';
            $i++;
         }
         if($pas['email']==$_POST['email']){
@@ -22,13 +22,13 @@ if(isset($_POST['register'])) {
         }
     }
 
-    $login=$_POST['Login'];
+    $login=$_POST['login'];
     $password=$_POST['password'];
     $confirm_password=$_POST['Confirm_password'];
     $Name=$_POST['Name'];
 if (strlen( $login)>=6){}
 else{
-    $_SESSION['errorLogin']='Длина логина должна быть не менее 6 символов';
+    $_SESSION['errorlogin']='Длина логина должна быть не менее 6 символов';
     $i++;
 }
 if (strlen( $password)>=6  && preg_match('/[0-9]/',$password) && preg_match('/[A-Za-z]/',$password) ){}
@@ -51,7 +51,7 @@ else{
     if($i==0){
         $_SESSION['message']='Пользователь успешно зарегистрирован';
         $arr = array(
-            'Login'     => $_POST['Login'],
+            'login'     => $_POST['login'],
             'email'    => $_POST['email'],
             'password'     => $_POST['password'],
             'Name'    => $_POST['Name']
