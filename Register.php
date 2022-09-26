@@ -27,19 +27,21 @@ if (!isset($_COOKIE['user'])):
                     <p>Login</p>
                     <input type="text" name="login" title="Должно быть не менее 6"   required/>
                 </label>
+                <p class="msg_login"></p>
             </div>
             <div class="form-element">
                 <label>
                     <p>Email</p>
                     <input type="email" name="email" required/>
                 </label>
+                <p class="msg_email"></p>
             </div>
             <div class="form-element">
                 <label>
                     <p>Password</p>
                     <input type="password" name="password" id="password"    required/>
                 </label>
-
+                <p class="msg_password"></p>
             </div>
 
             <div class="form-element">
@@ -47,19 +49,21 @@ if (!isset($_COOKIE['user'])):
                     <p>Confirm_password</p>
                     <input type="password" name="Confirm_password" id="confirm_password"   o required/>
                 </label>
+                <p class="msg_confirm"></p>
             </div>
             <div class="form-element">
                 <label>
                     <p>Name</p>
                     <input type="text" name="name"  required/>
                 </label>
+                <p class="msg_name"></p>
             </div>
             <button class="register-but" type="submit" name="register" id="submit" value="register">Register</button>
             <button onclick="location.href = 'Log.php'">Log in</button>
         </div>
-
+        <p class="msg"></p>
     </form>
-    <p class="msg"></p>
+
     <?php  else: ?>
     <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
     <?php endif; ?>

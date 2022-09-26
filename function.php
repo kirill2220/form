@@ -40,66 +40,108 @@ if(isset($_POST['login'])) {
             "fields"=>$error_fields
         ];
         echo json_encode($response);
-
+die();
+        $i++;
     }
 
 
-   /* foreach ($json as $pas){
-        if($pas['Login']==$login){
+   foreach ($json as $pas){
+        if($pas['login']==$login){
             $response=[
                 "status"=>false,
                 "type"=>2,
                 "message"=>"Такой login уже существует!",
             ];
             echo json_encode($response);
-        }
-        if($pas['email']==$email){
-            $_SESSION['errorEmail']='Такой email уже существует!';
+            die();
             $i++;
         }
+        if($pas['email']==$email){
+            $i++;
+            $response=[
+                "status"=>false,
+                "type"=>3,
+                "message"=>"Такой email уже существует!",
+            ];
+            echo json_encode($response);
+            die();
+        }
     }
 
-    if (strlen( $login)>=6){}
-    else{
-        $_SESSION['errorLogin']='Длина логина должна быть не менее 6 символов';
-        $i++;
-    }
-    if (strlen( $password)>=6  && preg_match('/[0-9]/',$password) && preg_match('/[A-Za-z]/',$password) ){}
-    else{
-        $_SESSION['errorPassword']='Длина пароля должна быть не менее 6 символов и сотоять из цифр и букв латинского алфавита';
-        $i++;
-    }
-    if(strlen( $name) >=1 && strlen( $name) <=3 && preg_match('/[A-Za-z]/',$name) ){}
-    else{
-        $_SESSION['errorname']='Длина имени должна быть от одного до трех символов и состоять из букв латинского алфавита';
-        $i++;
-    }
-    if($Confirm_password!=$password ){
-        $_SESSION['errorConfirmPassword']='Пароли не совпадают';
-        $i++;
-    }
-    if(preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)){}
-    else{
-        $_SESSION['errorEmail']='Неверный формат email';
-        $i++;
-    }
+       if (strlen( $login)>=6){}
+       else{
+           $response=[
+               "status"=>false,
+               "type"=>2,
+               "message"=>"линна логи не менее 6 символов",
+           ];
+           $i++;
+           echo json_encode($response);
+           die();
+       }
+       if (strlen( $password)>=6  && preg_match('/[0-9]/',$password) && preg_match('/[A-Za-z]/',$password) ){}
+       else{
+           $response=[
+               "status"=>false,
+               "type"=>4,
+               "message"=>"Длинна пароля должна быть не менее 6 символов и включать в себя цифры и буквы латинского алфаввита",
+           ];
+           $i++;
+           echo json_encode($response);
+           die();
+       }
+       if(strlen( $name) >=1 && strlen( $name) <=3 && preg_match('/[A-Za-z]/',$name) ){}
+       else{
+           $response=[
+               "status"=>false,
+               "type"=>6,
+               "message"=>"Длинна имени должна быть не менее 3 и не более 1  символа и включает в себя буквы латинского алфаввита",
+           ];
+           $i++;
+           echo json_encode($response);
+           die();
+       }
+       if($Confirm_password!=$password ){
+           $response=[
+               "status"=>false,
+               "type"=>5,
+               "message"=>"Не совпадают пароли",
+           ];
+           $i++;
+           echo json_encode($response);
+           die();
+       }
+       if(preg_match("|^[-0-9a-z_\.]+@[-0-9a-z_^\.]+\.[a-z]{2,6}$|i", $email)){}
+       else{
+           $response=[
+               "status"=>false,
+               "type"=>3,
+               "message"=>"Неверный формат email",
+           ];
+           $i++;
+           echo json_encode($response);
+           die();
+       }
 
 
 
-    if($i==0){
-        $_SESSION['message']='Пользователь успешно зарегистрирован';
-        $arr = array(
-            'Login'     => $_POST['Login'],
-            'email'    => $_POST['email'],
-            'password'     => $_POST['password'],
-            'name'    => $_POST['name']
-        );
+          if($i==0){
+              $arr = array(
+                  'login'     => $_POST['login'],
+                  'email'    => $_POST['email'],
+                  'password'     => $_POST['password'],
+                  'name'    => $_POST['name']
+              );
 
-        $arr['password']=md5($arr['password'].$salt);
-        array_push($json, $arr);
-        $json_string = json_encode($json);
-        file_put_contents($file, $json_string);
-        header('Location: /Register.php');
-    }
-    header('Location: /Register.php');*/
+              $arr['password']=md5($arr['password'].$salt);
+              array_push($json, $arr);
+              $json_string = json_encode($json);
+              file_put_contents($file, $json_string);
+              $response=[
+                  "status"=>true,
+                  "message"=>"Пользователь успешно зарегистрирован",
+              ];
+              echo json_encode($response);
+          }
+
 }

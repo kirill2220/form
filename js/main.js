@@ -30,6 +30,12 @@ success(data) {
 //Регистрация
 $('.register-but').click(function (e) {
     e.preventDefault();
+    $('.msg').text('');
+    $('.msg_login').text('');
+    $('.msg_email').text('');
+    $('.msg_name').text('');
+    $('.msg_confirm').text('');
+    $('.msg_password').text('');
     $(`input`).removeClass('error');
     let login = $('input[name="login"]').val();
     let password = $('input[name="password"]').val();
@@ -49,20 +55,38 @@ $('.register-but').click(function (e) {
             name:name
         },
         success(data) {
-            console.log(data);
             if (data.status) {
-                console.log(2);
-                document.location.href = '/Office.php';
-            } else {
-                console.log(data.type);
-                if(data.type===1){
-                    console.log(4);
-                    data.fields.forEach(function (field){
-                        $(`input[name="${field}"]`).addClass('error');
-                    })
-                }
+                //document.location.href = 'Register.php';
                 $('.msg').text(data.message);
-            }
+            } else {
+                switch (data.type){
+                    case 1:
+                        data.fields.forEach(function (field){
+                            $(`input[name="${field}"]`).addClass('error');
+                        })
+                        $('.msg').text(data.message);
+                        break;
+                    case 2:
+                        $('.msg_login').text(data.message);
+                        break;
+                    case 3:
+                        $('.msg_email').text(data.message);
+                    break;
+                    case 4:
+                        $('.msg_password').text(data.message);
+                        break;
+                    case 5:
+                        $('.msg_confirm').text(data.message);
+                        break;
+                    case 6:
+                        $('.msg_name').text(data.message);
+                        break;
+                }
+
+
+                }
+
+
 
         }
     });
