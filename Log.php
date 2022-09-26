@@ -17,10 +17,13 @@ require 'auth.php';
 <body>
 
 <div>
+
+    <noscript>Включите JS</noscript>
     <?php
     if (!isset($_COOKIE['user'])):
     ?>
-<form id="form" method="post" action="auth.php" name="signin-form" >
+
+<form id="form" name="signin-form" style="display:none">
     <div class="form-element">
         <label>
             <p>login</p>
@@ -42,6 +45,9 @@ require 'auth.php';
 <?php  else: ?>
     <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
 <?php endif; ?>
+<script type="text/javascript">
+    document.getElementById( "form" ).style.display = "block";
+</script>
 <script src="js/jquery-3.6.1.js"></script>
 <script src="js/main.js"></script>
 </body>

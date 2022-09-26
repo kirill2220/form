@@ -13,6 +13,8 @@ require 'auth.php';
     <title>Document</title>
 </head>
 <body>
+
+
 <p>Привет <?= $_COOKIE['user'] ?>.<a href="/exit.php">Выход</a></p>
 <script src="js/jquery-3.6.1.js"></script>
 <script src="js/main.js"></script>

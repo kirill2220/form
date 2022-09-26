@@ -19,8 +19,8 @@ require 'function.php';
 <?php
 if (!isset($_COOKIE['user'])):
 ?>
-
-    <form method="post" action="function.php" name="signup-form">
+    <noscript>Включите JS</noscript>
+    <form id="form"  style="display:none" name="signup-form">
         <div>
             <div class="form-element">
                 <label>
@@ -67,7 +67,9 @@ if (!isset($_COOKIE['user'])):
     <?php  else: ?>
     <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
     <?php endif; ?>
-
+<script type="text/javascript">
+    document.getElementById( "form" ).style.display = "block";
+</script>
 <script src="js/jquery-3.6.1.js"></script>
 <script src="js/main.js"></script>
 </body>
