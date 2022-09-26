@@ -10,15 +10,22 @@ if(isset($_POST['login'])) {
     foreach ($obj as $msg) {
         if ($login == $msg['login'] && $password == $msg['password']) {
             $user = $msg;
+            $_SESSION['user'] = [
+                "name" => $user['Name']
+            ];
             setcookie('user', $user['Name'], time() + 10, "/");
-            //header('Location: /Log.php');
+            $response =[
+                "status"=> true
+            ];
             $i++;
-            echo 'ok';
+            echo json_encode($response);
         }
     }
     if ($i == 0) {
-        // $_SESSION['errorLog']='Неверный логин или пароль';
-        //header('Location: /Log.php');
-        echo 'ytdthysq';
+        $response =[
+            "status"=> false,
+            "message"=>'неверный логин или пароль'
+        ];
+        echo json_encode($response);
     }
 }

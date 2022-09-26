@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-<p>Hi <?=$_POST['Name']; ?></p>
-<button onclick="location.href = 'Log.php'">Exit</button>
+<p>Привет <?= $_COOKIE['user'] ?>.<a href="exit.php">Выход</a></p>
 </body>
 </html>
