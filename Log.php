@@ -19,7 +19,7 @@ require 'auth.php';
 <div>
     <?php
     if (!isset($_COOKIE['user'])):
-        ?>
+    ?>
 <form id="form" method="post" action="auth.php" name="signin-form" >
     <div class="form-element">
         <label>
@@ -37,16 +37,10 @@ require 'auth.php';
     <button class="login-but" type="submit" name="login" value="login" >Log In</button>
     <button  onclick="location.href = 'Register.php'" >Register</button>
     <p class="msg"></p>
-    <?php
-    if (isset($_SESSION['errorLog'])) {
-        echo '<p class="msg">'. $_SESSION['errorLog'] .'</p>';
-    }
-    unset($_SESSION['errorLog']);
-    ?>
 </form>
 </div>
 <?php  else: ?>
-    <p>Привет <?= $_COOKIE['user'] ?>.<a href="exit.php">Выход</a></p>
+    <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
 <?php endif; ?>
 <script src="js/jquery-3.6.1.js"></script>
 <script src="js/main.js"></script>

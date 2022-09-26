@@ -1,3 +1,3 @@
 <?php
-setcookie('user',$user['Name'],time()-60,"/");
+setcookie('user',$user['name'],time()-60,"/");
 header('Location: /Log.php');
