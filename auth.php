@@ -3,7 +3,7 @@ session_start();
 if(isset($_POST['login'])) {
     $i = 0;
     $salt = 'kirill';
-    $json = file_get_contents("myBD.json");
+    $json = file_get_contents("bd/myBD.json");
     $obj = json_decode($json, true);
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $password=preg_replace('/\s+/', '', $_POST['password']);
