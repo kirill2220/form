@@ -9,7 +9,7 @@ if(isset($_POST['login'])) {
     $name=preg_replace('/\s+/', '', $_POST['name']);
     $email=preg_replace('/\s+/', '', $_POST['email']);
     $salt='kirill';
-    $file = "myBD.json";
+    $file = "bd/myBD.json";
     $data=file_get_contents($file);
     if (empty($data)) {
         $json = [];
@@ -127,10 +127,10 @@ die();
 
           if($i==0){
               $arr = array(
-                  'login'     => $_POST['login'],
-                  'email'    => $_POST['email'],
-                  'password'     => $_POST['password'],
-                  'name'    => $_POST['name']
+                  'login'     => $login,
+                  'email'    => $email,
+                  'password'     => $password,
+                  'name'    => $name
               );
 
               $arr['password']=md5($arr['password'].$salt);
