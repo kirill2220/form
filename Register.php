@@ -20,6 +20,10 @@ require 'function.php';
 if (!isset($_COOKIE['user'])):
 ?>
     <noscript>Включите JS</noscript>
+<?=$_SESSION['ema']; ?>
+    <?=$_SESSION['ema1']; ?>
+    <?=$_SESSION['ema2']; ?>
+    <?=$_SESSION['ema3']; ?>
     <form id="form"  style="display:none" name="signup-form">
         <div>
             <div class="form-element">

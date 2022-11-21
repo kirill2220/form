@@ -1,5 +1,5 @@
 <?php
-
+require 'connect.php ';
 session_start();
 $i=0;
 if(isset($_POST['login'])) {
@@ -8,13 +8,22 @@ if(isset($_POST['login'])) {
     $Confirm_password=preg_replace('/\s+/', '', $_POST['Confirm_password']);
     $name=preg_replace('/\s+/', '', $_POST['name']);
     $email=preg_replace('/\s+/', '', $_POST['email']);
-    $salt='kirill';
-    $file = "bd/myBD.json";
-    $data=file_get_contents($file);
-    if (empty($data)) {
-        $json = [];
-    } else {
-        $json = json_decode($data, TRUE);
+    $salt='Kirill';
+
+    $query = 'exec ListUsersEmailLogin';
+    $result = odbc_exec($conn, $query) or die("Couldn't execute query!");
+    $json=[];
+    $my_array=[];
+//$json=dbc_result($result);
+    while(odbc_fetch_row($result)){
+
+        $emaildb=odbc_result($result,'email');
+        $logindb=odbc_result($result,'login');
+        $my_array=array(
+            'email'=> $emaildb,
+            'login'=>$logindb
+        );
+        array_push($json,$my_array);
     }
     $error_fields=[];
     if($password===''){
@@ -46,7 +55,8 @@ die();
 
 
    foreach ($json as $pas){
-        if($pas['login']==$login){
+        if($pas["login"]==$login){
+
             $response=[
                 "status"=>false,
                 "type"=>2,
@@ -56,7 +66,9 @@ die();
             die();
             $i++;
         }
-        if($pas['email']==$email){
+
+        if($pas["email"]==$email){
+
             $i++;
             $response=[
                 "status"=>false,
@@ -133,10 +145,12 @@ die();
                   'name'    => $name
               );
 
-              $arr['password']=md5($arr['password'].$salt);
-              array_push($json, $arr);
-              $json_string = json_encode($json);
-              file_put_contents($file, $json_string);
+              $query = "exec InsertUsers".' '.$arr['login']." , ".$arr['password'];
+
+              $result=odbc_exec($conn, $query) ;
+              $query = "exec InsertData".' '.$arr['login']." , ".$arr['password'].' , '.$arr['name'].' , '.' " '. $arr['email'].' "';
+$_SESSION['ema']=$query;
+              $result=odbc_exec($conn, $query) ;
               $response=[
                   "status"=>true,
                   "message"=>"Пользователь успешно зарегистрирован",
