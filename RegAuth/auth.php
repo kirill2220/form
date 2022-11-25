@@ -1,10 +1,26 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'].'/connect.php';
 session_start();
 if(isset($_POST['login'])) {
     $i = 0;
-    $salt = 'kirill';
-    $json = file_get_contents("bd/myBD.json");
-    $obj = json_decode($json, true);
+
+    $query = 'exec ListUsersPasswordLogin';
+    $result = odbc_exec($conn, $query) ;
+    $json=[];
+    $my_array=[];
+
+    while(odbc_fetch_row($result)){
+
+        $passworddb=odbc_result($result,'password');
+        $logindb=odbc_result($result,'login');
+        $namedb=odbc_result($result,'name');
+        $my_array=array(
+            'passworddb'=> $passworddb,
+            'logindb'=>$logindb,
+            'namedb'=>$namedb
+        );
+        array_push($json,$my_array);
+    }
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $password=preg_replace('/\s+/', '', $_POST['password']);
     $error_fields=[];
@@ -24,14 +40,15 @@ if(!empty($error_fields)){
     echo json_encode($response);
     die();
 }
-    $password = md5($password . $salt);
-    foreach ($obj as $msg) {
-        if ($login == $msg['login'] && $password == $msg['password']) {
+
+    foreach ($json as $msg) {
+        if ($login == $msg['logindb'] && $password == $msg['passworddb']) {
             $user = $msg;
             $_SESSION['user'] = [
-                "name" => $user['name']
+                "name" => $user['namedb']
             ];
-            setcookie('user', $user['name'], time() + 10, "/");
+
+            setcookie('user', $user['namedb'], time() + 10, "/");
             $response =[
                 "status"=> true
             ];

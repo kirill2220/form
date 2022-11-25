@@ -1,3 +1,3 @@
 <?php
-setcookie('user',$user['name'],time()-60,"/");
-header('Location: /Log.php');
+setcookie('user',$user['namedb'],time()-60,"/");
+header('Location: /RegAuth/Log.php');

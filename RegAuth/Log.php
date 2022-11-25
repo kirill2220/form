@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'auth.php';
+$_SERVER['DOCUMENT_ROOT'].'/RegAuth/auth.php';
 
 ?>
 
@@ -11,11 +11,12 @@ require 'auth.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Style/style.css">
     <title>Document</title>
 </head>
 <body>
-
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/RegAuth.js"></script>
 <div>
 
     <noscript>Включите JS</noscript>
@@ -43,12 +44,12 @@ require 'auth.php';
 </form>
 </div>
 <?php  else: ?>
-    <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
+    <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="../exit.php">Выход</a></p>
 <?php endif; ?>
 <script type="text/javascript">
     document.getElementById( "form" ).style.display = "block";
 </script>
-<script src="js/jquery-3.6.1.js"></script>
-<script src="js/main.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/RegAuth.js"></script>
 </body>
 </html>

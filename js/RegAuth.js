@@ -1,3 +1,33 @@
+//Авторизация
+$('.login-but').click(function (e) {
+e.preventDefault();
+    $(`input`).removeClass('error');
+let login = $('input[name="login"]').val();
+let password = $('input[name="password"]').val();
+$.ajax({
+    url:'../RegAuth/auth.php',
+    type:'POST',
+    dataType:'json',
+    data:{
+        login:login,
+        password:password
+    },
+success(data) {
+    if (data.status) {
+        document.location.href = '../Office.php';
+    } else {
+        if(data.type===1){
+            data.fields.forEach(function (field){
+                $(`input[name="${field}"]`).addClass('error');
+            })
+        }
+            $('.msg').text(data.message);
+        }
+
+}
+});
+});
+//Регистрация
 $('.register-but').click(function (e) {
     e.preventDefault();
     $('.msg').text('');
@@ -41,7 +71,7 @@ $('.register-but').click(function (e) {
                         break;
                     case 3:
                         $('.msg_email').text(data.message);
-                        break;
+                    break;
                     case 4:
                         $('.msg_password').text(data.message);
                         break;

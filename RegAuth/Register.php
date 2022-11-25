@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'function.php';
+require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
 
 ?>
 <!doctype html>
@@ -10,20 +10,17 @@ require 'function.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../Style/style.css">
     <title>Document</title>
 </head>
 <body>
-<script src="js/jquery-3.6.1.js"></script>
-<script src="js/main.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/RegAuth.js"></script>
 <?php
 if (!isset($_COOKIE['user'])):
 ?>
     <noscript>Включите JS</noscript>
-<?=$_SESSION['ema']; ?>
-    <?=$_SESSION['ema1']; ?>
-    <?=$_SESSION['ema2']; ?>
-    <?=$_SESSION['ema3']; ?>
+
     <form id="form"  style="display:none" name="signup-form">
         <div>
             <div class="form-element">
@@ -69,12 +66,15 @@ if (!isset($_COOKIE['user'])):
     </form>
 
     <?php  else: ?>
-    <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="exit.php">Выход</a></p>
+    <p>Привет <?= $_COOKIE['user'] ?>,ты на странице входа<a href="../exit.php">Выход</a></p>
     <?php endif; ?>
 <script type="text/javascript">
     document.getElementById( "form" ).style.display = "block";
 </script>
-<script src="js/jquery-3.6.1.js"></script>
-<script src="js/main.js"></script>
+<script src="../js/jquery-3.6.1.js"></script>
+<script src="../js/RegAuth.js"></script>
 </body>
 </html>
+<?php
+session_destroy();
+?>

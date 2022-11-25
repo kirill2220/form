@@ -4,23 +4,43 @@ $query = 'exec ListUsersEmailLogin';
 $result = odbc_exec($conn, $query) or die("Couldn't execute query!");
 $json=[];
 $my_array=[];
-//$json=dbc_result($result);
- while(odbc_fetch_row($result)){
 
-     $email=odbc_result($result,'email');
-     $login=odbc_result($result,'login');
-     $json=array(
-        'email'=> $email,
-         'login'=>$login
-     );
-     array_push($my_array,$json);
- }
+while(odbc_fetch_row($result)){
 
-$email1='gleb@mail.r';
-foreach ($my_array as $pas){
-    if($pas["email"]==$email1){
-        var_dump($pas["email"]);
+    $emaildb=odbc_result($result,'email');
+    $logindb=odbc_result($result,'login');
+    $my_array=array(
+        'emaildb'=> $emaildb,
+        'logindb'=>$logindb
+    );
+    array_push($json,$my_array);
+}
+foreach ($json as $pas){
+    if($pas["logindb"]=='kirill123'){
+var_dump($pas["logindb"]);
+        $response=[
+            "status"=>false,
+            "type"=>2,
+            "message"=>"Такой login уже существует!",
+        ];
+        echo json_encode($response);
+        die();
+        $i++;
     }
 
+
+    if($pas["emaildb"]=='kirill@mail.ru'){
+
+
+
+        $response=[
+            "status"=>false,
+            "type"=>3,
+            "message"=>"Такой email уже существует!",
+        ];
+        echo json_encode($response);
+        die();
+        $i++;
+    }
 }
 

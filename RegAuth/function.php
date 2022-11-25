@@ -1,5 +1,5 @@
 <?php
-require 'connect.php ';
+require$_SERVER['DOCUMENT_ROOT'].'/connect.php ';
 session_start();
 $i=0;
 if(isset($_POST['login'])) {
@@ -14,14 +14,14 @@ if(isset($_POST['login'])) {
     $result = odbc_exec($conn, $query) or die("Couldn't execute query!");
     $json=[];
     $my_array=[];
-//$json=dbc_result($result);
+
     while(odbc_fetch_row($result)){
 
         $emaildb=odbc_result($result,'email');
         $logindb=odbc_result($result,'login');
         $my_array=array(
-            'email'=> $emaildb,
-            'login'=>$logindb
+            'emaildb'=> $emaildb,
+            'logindb'=>$logindb
         );
         array_push($json,$my_array);
     }
@@ -55,7 +55,7 @@ die();
 
 
    foreach ($json as $pas){
-        if($pas["login"]==$login){
+        if($pas["logindb"]==$login){
 
             $response=[
                 "status"=>false,
@@ -67,9 +67,12 @@ die();
             $i++;
         }
 
-        if($pas["email"]==$email){
+       $_SESSION['ema']=$email;
+       $_SESSION['ema1']=$pas["emaildb"];
+        if($pas["emaildb"]==$email){
 
-            $i++;
+            $_SESSION['ema2']=$email;
+
             $response=[
                 "status"=>false,
                 "type"=>3,
@@ -77,6 +80,7 @@ die();
             ];
             echo json_encode($response);
             die();
+            $i++;
         }
     }
 
@@ -148,8 +152,8 @@ die();
               $query = "exec InsertUsers".' '.$arr['login']." , ".$arr['password'];
 
               $result=odbc_exec($conn, $query) ;
-              $query = "exec InsertData".' '.$arr['login']." , ".$arr['password'].' , '.$arr['name'].' , '.' " '. $arr['email'].' "';
-$_SESSION['ema']=$query;
+              $query = "exec InsertData".' '.$arr['login']." , ".$arr['password'].' , '.$arr['name'].' , '."'". $arr['email']."'";
+
               $result=odbc_exec($conn, $query) ;
               $response=[
                   "status"=>true,

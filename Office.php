@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'auth.php';
+require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/auth.php';
 
 ?>
 <!doctype html>
@@ -17,6 +17,6 @@ require 'auth.php';
 
 <p>Привет <?= $_COOKIE['user'] ?>.<a href="/exit.php">Выход</a></p>
 <script src="js/jquery-3.6.1.js"></script>
-<script src="js/main.js"></script>
+<script src="js/RegAuth.js"></script>
 </body>
 </html>
