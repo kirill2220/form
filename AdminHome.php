@@ -9,6 +9,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="Style/forms.css">
     <link rel="stylesheet" href="Style/global_style.css">
+<<<<<<< HEAD
+    <link href="./lib/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+=======
+>>>>>>> master
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 </head>
@@ -19,7 +23,10 @@
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
     <div class="navbar-collapse collapse" id="navbarColor01" style="">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -35,10 +42,26 @@
                 <a class="nav-link" href="#">About</a>
             </li>
         </ul>
+<<<<<<< HEAD
+        <ul class="form-inline my-2 my-lg-0 navbar-nav d-flex">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="./images/user.png" class="rounded-circle mr-2" height="34" alt="/*Username*/"> <span>Username</span>
+                </a>
+                <div class="dropdown-menu navbar-dark" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#"><i class="icon-user-plus"></i> My Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+                    <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+=======
         <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form>
+>>>>>>> master
     </div>
 </nav>
     <div class="container">
@@ -76,6 +99,34 @@
                     <p>Жанр</p>
                     <input class="form-control" id="genre" type="text">
                 </label>
+<<<<<<< HEAD
+                <!--<label class="col-sm-4" for="poster">
+                    <p>Постер фильма</p>
+                    <input class="form-control" id="poster" multiple accept="image/*,image/jpeg" type="file">
+                </label>
+                <label class="input__wrapper col-sm-4" for="poster">
+                    <p>Трейлер фильма</p>
+                    <input class="form-control input input__file" id="poster input__file" multiple accept="video/*" type="file">
+                </label>-->
+                <div class="col-sm-4">
+                    <p>Постер фильма</p>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="poster">Choose file</label>
+                            <input type="file" class="custom-file-input" accept="image/*,image/jpeg" id="poster">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p>Трейлер фильма</p>
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="trailer">Choose file</label>
+                            <input type="file" class="custom-file-input" multiple accept="video/*" id="trailer">
+                        </div>
+                    </div>
+                </div>
+=======
                 <label class="col-sm-4" for="poster">
                     <p>Постер фильма</p>
                     <input class="form-control" id="poster" multiple accept="image/*,image/jpeg" type="file">
@@ -84,6 +135,7 @@
                     <p>Трейлер фильма</p>
                     <input class="form-control" id="poster" multiple accept="video/*" type="file">
                 </label>
+>>>>>>> master
             </div>
             <div class="row">
                 <label class="col-sm-12" for="description">
@@ -99,9 +151,19 @@
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<<<<<<< HEAD
+    <script src="lib/jquery-3.6.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
+    <!--<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap/js/popper.min.js"></script>-->
+=======
     <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="lib/bootstrap/js/popper.min.js"></script>
+>>>>>>> master
 </body>
 
 </html>

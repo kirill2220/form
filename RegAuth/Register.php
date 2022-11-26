@@ -14,7 +14,7 @@ require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
     <title>Document</title>
 </head>
 <body>
-<script src="../js/jquery-3.6.1.js"></script>
+<script src="../lib/jquery-3.6.1.js"></script>
 <script src="../js/RegAuth.js"></script>
 <?php
 if (!isset($_COOKIE['user'])):
@@ -71,7 +71,7 @@ if (!isset($_COOKIE['user'])):
 <script type="text/javascript">
     document.getElementById( "form" ).style.display = "block";
 </script>
-<script src="../js/jquery-3.6.1.js"></script>
+<script src="../lib/jquery-3.6.1.js"></script>
 <script src="../js/RegAuth.js"></script>
 </body>
 </html>
