@@ -41,7 +41,7 @@
             </label>
             <label class="col-sm-4" for="genre">
                 <p>Жанр</p>
-                <input class="form-control" id="genre" type="text">
+                <input class="form-control" id="genre" name="genre" type="text">
             </label>
             <label class="col-sm-4" for="poster">
                 <p>Постер фильма</p>

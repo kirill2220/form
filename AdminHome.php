@@ -1,3 +1,8 @@
+<?php
+session_start();
+require $_SERVER['DOCUMENT_ROOT'].'/Add/addfilm.php'
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -51,7 +56,10 @@
     </div>
 </nav>
 <div class="container">
-    <form class="addFilms form-group" method="post">
+    <?=$_SESSION['a1'].'hi';?>
+    <?=$_SESSION['a2'].'fr';?>
+    <?=$_SESSION['a3'].'sw';?>
+    <form class="addFilms form-group" >
         <div class="row">
             <label class="col-sm-4" for="name">
                 <p>Название фильма</p>
@@ -98,7 +106,7 @@
                 <div class="input-group mb-3">
                     <div class="custom-file">
                         <label class="custom-file-label" for="poster">Choose file</label>
-                        <input type="file" class="custom-file-input" accept="image/*,image/jpeg" id="poster">
+                        <input type="file"  class="custom-file-input" accept="image/*,image/jpeg" id="poster">
                     </div>
                 </div>
             </div>
@@ -128,6 +136,13 @@
 <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/bootstrap/js/popper.min.js"></script>
+<script src="js/AddFilm.js"></script>
+<script>
+
+</script>
 </body>
 
 </html>
+<?php
+session_destroy();
+?>
