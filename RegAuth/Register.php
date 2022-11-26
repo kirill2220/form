@@ -10,11 +10,11 @@ require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/style_reg_auth.css">
     <title>Document</title>
 </head>
 <body>
-<script src="../js/jquery-3.6.1.js"></script>
+<script src="../lib/jquery-3.6.1.js"></script>
 <script src="../js/RegAuth.js"></script>
 <?php
 if (!isset($_COOKIE['user'])):
@@ -71,7 +71,7 @@ if (!isset($_COOKIE['user'])):
 <script type="text/javascript">
     document.getElementById( "form" ).style.display = "block";
 </script>
-<script src="../js/jquery-3.6.1.js"></script>
+<script src="../lib/jquery-3.6.1.js"></script>
 <script src="../js/RegAuth.js"></script>
 </body>
 </html>
