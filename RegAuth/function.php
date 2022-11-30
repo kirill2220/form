@@ -1,5 +1,6 @@
 <?php
-require$_SERVER['DOCUMENT_ROOT'].'/connect.php ';
+require $_SERVER['DOCUMENT_ROOT'].'/connect.php ';
+
 session_start();
 $i=0;
 if(isset($_POST['login'])) {
@@ -8,23 +9,28 @@ if(isset($_POST['login'])) {
     $Confirm_password=preg_replace('/\s+/', '', $_POST['Confirm_password']);
     $name=preg_replace('/\s+/', '', $_POST['name']);
     $email=preg_replace('/\s+/', '', $_POST['email']);
-    $salt='Kirill';
 
-    $query = 'exec ListUsersEmailLogin';
-    $result = odbc_exec($conn, $query) or die("Couldn't execute query!");
+
+
+
     $json=[];
     $my_array=[];
+    $sql = 'exec ListUsersEmailLogin';
+    $stmt = sqlsrv_query( $conn, $sql );
+    if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
+    }
 
-    while(odbc_fetch_row($result)){
-
-        $emaildb=odbc_result($result,'email');
-        $logindb=odbc_result($result,'login');
+    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $my_array=array(
-            'emaildb'=> $emaildb,
-            'logindb'=>$logindb
+            'emaildb'=> $row['email'],
+            'logindb'=>$row['login']
         );
         array_push($json,$my_array);
     }
+
+
+    //$_SESSION['a']=$json['logindb'];
     $error_fields=[];
     if($password===''){
         $error_fields[]='password';
@@ -106,12 +112,12 @@ die();
            echo json_encode($response);
            die();
        }
-       if(strlen( $name) >=1 && strlen( $name) <=3 && preg_match('/[A-Za-z]/',$name) ){}
+       if(strlen( $name) >=1 && strlen( $name) <=10 && preg_match('/[A-Za-z]/',$name) ){}
        else{
            $response=[
                "status"=>false,
                "type"=>6,
-               "message"=>"Длинна имени должна быть не менее 3 и не более 1  символа и включает в себя буквы латинского алфаввита",
+               "message"=>"Длинна имени должна быть не менее 1 и не более 10  символа и включает в себя буквы латинского алфаввита",
            ];
            $i++;
            echo json_encode($response);
@@ -144,17 +150,24 @@ die();
           if($i==0){
               $arr = array(
                   'login'     => $login,
-                  'email'    => $email,
+                  'email'    => "'".$email."'",
                   'password'     => $password,
                   'name'    => $name
               );
 
-              $query = "exec InsertUsers".' '.$arr['login']." , ".$arr['password'];
+              $params = array($arr['login'],$arr['password']);
+$sql='exec InsertUsers ?, ?';
+              $stmt = sqlsrv_query( $conn, $sql, $params);
+              if( $stmt === false) {
+                  die( print_r( sqlsrv_errors(), true) );
+              }
+              $params = array($arr['login'],$arr['password'],$arr['name'],$arr['email']);
+              $sql='exec InsertData ?, ?,? ,? ';
+              $stmt = sqlsrv_query( $conn, $sql, $params);
+              if( $stmt === false) {
+                  die( print_r( sqlsrv_errors(), true) );
+              }
 
-              $result=odbc_exec($conn, $query) ;
-              $query = "exec InsertData".' '.$arr['login']." , ".$arr['password'].' , '.$arr['name'].' , '."'". $arr['email']."'";
-
-              $result=odbc_exec($conn, $query) ;
               $response=[
                   "status"=>true,
                   "message"=>"Пользователь успешно зарегистрирован",

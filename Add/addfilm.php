@@ -33,4 +33,64 @@ $_SESSION['a1']=$genre;
         );
         array_push($json, $my_array);
     }
+
+
+
+
+    $error_fields=[];
+    if($name===''){
+        $error_fields[]='password';
+    }
+    if($year===''){
+        $error_fields[]='login';
+    }
+    if($duration===''){
+        $error_fields[]='duration';
+    }
+    if($age===''){
+        $error_fields[]='age';
+    }
+    if($date_of_start===''){
+        $error_fields[]='email';
+    }
+    if($date_of_end===''){
+        $error_fields[]='password';
+    }
+    if($genre===''){
+        $error_fields[]='login';
+    }
+    if($description===''){
+        $error_fields[]='duration';
+    }
+
+    if(!empty($error_fields)){
+        $response=[
+            "status"=>false,
+            "type"=>1,
+            "message"=>"Заполните все поля",
+            "fields"=>$error_fields
+        ];
+        echo json_encode($response);
+        die();
+        $i++;
+    }
+if ($year<=1895 ){
+
+    $response=[
+        "status"=>false,
+        "type"=>2,
+        "message"=>"Кино изобрели в 1895 году",
+    ];
+    echo json_encode($response);
+    die();
+    $i++;
+}
+
+
+
+
+
+
+
+
 }

@@ -1,6 +1,10 @@
 <?php
+$connectionInfo = array( "Database"=>"kursach", "UID"=>"KiR", "PWD"=>"Barabull17");
+$conn = sqlsrv_connect( "KIRILL", $connectionInfo);
 
-$conn = odbc_connect( "Driver={SQL Server};Server=KIR\SQLEXPRESS;Database=kurs;", 'KiR', 'Barabull17' );
+
+
+
 
 
 

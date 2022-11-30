@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,120 +11,53 @@
     <title>Document</title>
 </head>
 <body>
-<form action="test.php" method="post">
-    <div class="col-sm-4">
-        <p>Постер фильма</p>
-        <div class="input-group mb-3">
-            <div class="custom-file">
-                <label class="custom-file-label" for="poster">Choose file</label>
-                <input type="file" name="poster"  class="custom-file-input" accept="image/*,image/jpeg" id="poster">
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <p>Трейлер фильма</p>
-        <div class="input-group mb-3">
-            <div class="custom-file">
-                <label class="custom-file-label" for="trailer">Choose file</label>
-                <input type="file" name="trailer" class="custom-file-input" multiple accept="video/*" id="trailer">
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-outline-danger btn-lg btn-block" type="submit">Отправить</button>
-
-</form>
-</body>
-</html>
+<?=$_SESSION['a'];?>
+<form action="test.php" enctype="multipart/form-data" method="post">
+    <p>Загрузите ваши фотографии на сервер</p>
+    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
+        <input type="submit" value="Отправить"></p>
+    <pre>
+</form
 <?php
 require 'connect.php ';
-var_dump($_POST);
-$trailer = preg_replace('/\s+/', '', $_POST['trailer']);
-$poster = preg_replace('/\s+/', '', $_POST['poster']);
-//var_dump($trailer.'</br>');
-//var_dump($_FILES['poster']['tmp_name'].'</br>');
-if(isset($_POST['trailer'])) {
-    $img = addslashes(file_get_contents("C:\Users\Kirill\Downloads\Screenshot_12.jpg"));
-    $img1 = addslashes(file_get_contents("C:\Users\Kirill\Downloads\Video\imagine-dragons-x-jid-enemy_409720.mp4"));
-    //var_dump($img);
-
-    $query = "insert into ing(img) values('$poster')";
-    $result = odbc_exec($conn, $query) or die("Couldn't execute query!");
 
 
-}
+//$poster =$_POST['poster'];
 
+/*if(isset($_FILES['photo']['tmp_name'])) {
+var_dump($_FILES['photo']);
+    $sql = "INSERT INTO ing(img) VALUES (?)";
+    $img = file_get_contents($_FILES['photo']['tmp_name']);
+    $params = array($img);
 
-
-
-
-
-var_dump('--------------------------------------------------</br>');
-var_dump($img);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$query = 'exec ListUsersEmailLogin';
-$result = odbc_exec($conn, $query) or die("Couldn't execute query!");
-$json=[];
-$my_array=[];
-
-while(odbc_fetch_row($result)){
-
-    $emaildb=odbc_result($result,'email');
-    $logindb=odbc_result($result,'login');
-    $my_array=array(
-        'emaildb'=> $emaildb,
-        'logindb'=>$logindb
-    );
-    array_push($json,$my_array);
-}
-foreach ($json as $pas){
-    if($pas["logindb"]=='kirill123'){
-        var_dump($pas["logindb"]);
-        $response=[
-            "status"=>false,
-            "type"=>2,
-            "message"=>"Такой login уже существует!",
-        ];
-        echo json_encode($response);
-        die();
-        $i++;
+    $stmt = sqlsrv_query( $conn, $sql, $params);
+    if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
     }
 
-
-    if($pas["emaildb"]=='kirill@mail.ru'){
-
-
-
-        $response=[
-            "status"=>false,
-            "type"=>3,
-            "message"=>"Такой email уже существует!",
-        ];
-        echo json_encode($response);
-        die();
-        $i++;
+    $sql = "select * from ing";
+    $stmt = sqlsrv_query( $conn, $sql );
+    if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
     }
-}
-?>
+
+    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+        $show_img=base64_encode($row['img']);
+        var_dump($show_img);*/?><!--
+        <img src="data:image/jpeg;base64, <?/*=$show_img */?>" alt="">
+        --><?php
+/*    }*/
+    /*  foreach ($json as $msg) {
+         var_dump(base64_encode($msg['img']));
+      }*/
+
+
+ } ?>
+
+
+
+</pre>
+</body>
+</html>
+
+

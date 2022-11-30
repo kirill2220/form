@@ -3,24 +3,25 @@ include $_SERVER['DOCUMENT_ROOT'].'/connect.php';
 session_start();
 if(isset($_POST['login'])) {
     $i = 0;
-
-    $query = 'exec ListUsersPasswordLogin';
-    $result = odbc_exec($conn, $query) ;
     $json=[];
     $my_array=[];
+    $sql = 'exec ListUsersPasswordLogin';
+    $stmt = sqlsrv_query( $conn, $sql );
+    if( $stmt === false) {
+        die( print_r( sqlsrv_errors(), true) );
+    }
 
-    while(odbc_fetch_row($result)){
-
-        $passworddb=odbc_result($result,'password');
-        $logindb=odbc_result($result,'login');
-        $namedb=odbc_result($result,'name');
+    while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         $my_array=array(
-            'passworddb'=> $passworddb,
-            'logindb'=>$logindb,
-            'namedb'=>$namedb
+            'passworddb'=> $row['password'],
+            'logindb'=>$row['login'],
+            'namedb'=>$row['name']
         );
         array_push($json,$my_array);
     }
+
+
+
     $login = preg_replace('/\s+/', '', $_POST['login']);
     $password=preg_replace('/\s+/', '', $_POST['password']);
     $error_fields=[];

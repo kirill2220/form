@@ -1,6 +1,6 @@
 <?php
 session_start();
-require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
+include $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
 
 ?>
 <!doctype html>
@@ -15,12 +15,12 @@ require $_SERVER['DOCUMENT_ROOT'].'/RegAuth/function.php';
 </head>
 <body>
 <script src="../lib/jquery-3.6.1.js"></script>
-<script src="../js/RegAuth.js"></script>
+
 <?php
 if (!isset($_COOKIE['user'])):
 ?>
     <noscript>Включите JS</noscript>
-
+<?= $_SESSION['a'];?>
     <form id="form"  style="display:none" name="signup-form">
         <div>
             <div class="form-element">

@@ -16,7 +16,7 @@ $_SERVER['DOCUMENT_ROOT'].'/RegAuth/auth.php';
 </head>
 <body>
 <script src="../lib/jquery-3.6.1.js"></script>
-<script src="../js/RegAuth.js"></script>
+
 <div>
 
     <noscript>Включите JS</noscript>
@@ -49,7 +49,7 @@ $_SERVER['DOCUMENT_ROOT'].'/RegAuth/auth.php';
 <script type="text/javascript">
     document.getElementById( "form" ).style.display = "block";
 </script>
-<script src="../lib/jquery-3.6.1.js"></script>
+
 <script src="../js/RegAuth.js"></script>
 </body>
 </html>

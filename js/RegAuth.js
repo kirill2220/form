@@ -42,7 +42,7 @@ $('.register-but').click(function (e) {
     let Confirm_password = $('input[name="Confirm_password"]').val();
     let name = $('input[name="name"]').val();
     let email = $('input[name="email"]').val();
-
+window.alert(login);
     $.ajax({
         url:'../RegAuth/function.php',
         type:'POST',
